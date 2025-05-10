@@ -46,10 +46,18 @@ def main():
 		updateable_players.update(dt)
 		updateable_shot.update(dt)
 
+
+		#check if astroids are killed
 		for asteroid in drawable_asteroid:
 			if asteroid.collision(player):
 				print("Game over!")
 				exit()
+			
+			for bullet in drawable_shot:
+				if bullet.collision(asteroid):
+					asteroid.kill()
+					bullet.kill()
+			
 				
 
 		screen.fill("black")
