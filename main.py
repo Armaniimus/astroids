@@ -31,8 +31,6 @@ def main():
 	print(f"Screen width: {SCREEN_WIDTH}")
 	print(f"Screen height: {SCREEN_HEIGHT}")
 
-	
-
 	while True:
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
@@ -41,6 +39,12 @@ def main():
 		updateable_asteroidfield.update(dt)
 		updateable_asteroid.update(dt)
 		updateable_players.update(dt)
+
+		for asteroid in drawable_asteroid:
+			if asteroid.collision(player):
+				print("Game over!")
+				exit()
+				
 
 		screen.fill("black")
 		for player in drawable_players:
